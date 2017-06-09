@@ -1,5 +1,5 @@
 (() => {
- const lazyloadVanilla = () => {
+ const lazyload = () => {
   // Test if image is in the viewport
   const isImageInViewport = (img) => {
    const rect = img.getBoundingClientRect();
@@ -31,8 +31,8 @@
    }, 15);
   };
 
-  // lazyloadVanilla function
-  const lazyloadVanillaLoader = () => {
+  // lazyload function
+  const lazyloadLoader = () => {
    const lazyImagesList = document.querySelectorAll('img[data-src]');
 
    lazyImagesList.forEach((image) => {
@@ -57,31 +57,31 @@
 
    // Remove event listeners if all images are loaded
    if (document.querySelectorAll('img[data-src]').length === 0 && document.querySelectorAll('img[data-srcset]')) {
-    window.removeEventListener('DOMContentLoaded', lazyloadVanilla);
+    window.removeEventListener('DOMContentLoaded', lazyload);
 
-    window.removeEventListener('load', lazyloadVanillaLoader);
+    window.removeEventListener('load', lazyloadLoader);
 
-    window.removeEventListener('resize', lazyloadVanillaLoader);
+    window.removeEventListener('resize', lazyloadLoader);
 
-    window.removeEventListener('scroll', lazyloadVanillaLoader);
+    window.removeEventListener('scroll', lazyloadLoader);
    }
   };
 
   // Add event listeners to images
-  window.addEventListener('DOMContentLoaded', lazyloadVanillaLoader);
+  window.addEventListener('DOMContentLoaded', lazyloadLoader);
 
-  window.addEventListener('load', lazyloadVanillaLoader);
+  window.addEventListener('load', lazyloadLoader);
 
-  window.addEventListener('resize', lazyloadVanillaLoader);
+  window.addEventListener('resize', lazyloadLoader);
 
-  window.addEventListener('scroll', lazyloadVanillaLoader);
+  window.addEventListener('scroll', lazyloadLoader);
  }
- 
+
  // Test if JavaScript is available and allowed
  if (document.querySelector('.no-js') !== null) {
   document.querySelector('.no-js').classList.remove('no-js');
  }
 
- // Initiate lazyloadVanilla plugin
- return lazyloadVanilla();
+ // Initiate lazyload plugin
+ return lazyload();
 })();
